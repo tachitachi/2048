@@ -127,7 +127,7 @@ GameManager.prototype.moveTile = function (tile, cell) {
 };
 
 // Move tiles on the grid in the specified direction
-GameManager.prototype.move = function (direction) {
+GameManager.prototype.move = function (direction, auto) {
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
 
@@ -184,9 +184,12 @@ GameManager.prototype.move = function (direction) {
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
+      this.actuate();
     }
 
-    this.actuate();
+    if(auto === undefined || auto === false){
+      this.actuate();
+    }
   }
 };
 
